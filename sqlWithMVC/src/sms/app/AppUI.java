@@ -30,11 +30,11 @@ public class AppUI {
 
         while (true) {
             if (mainMenu) {
-                System.out.println("---------------<ÇÐ»ýÁ¤º¸ °ü¸® ½Ã½ºÅÛ>---------------");
-                System.out.println("                1. ÇÐ»ý Á¤º¸ °ü¸®");
-                System.out.println("                2. ¼ºÀû Á¤º¸ °ü¸®");
-                System.out.println("                3. ÇÁ·Î±×·¥ Á¾·á");
-                System.out.print("             ¼±ÅÃ>" );
+                System.out.println("---------------<??????? ???? ?ý???>---------------");
+                System.out.println("                1. ??? ???? ????");
+                System.out.println("                2. ???? ???? ????");
+                System.out.println("                3. ?????? ????");
+                System.out.print("             ????>" );
                 String cmd = sc.next();
                 if (cmd.equals("1")) {
                     mainMenu = false;
@@ -47,23 +47,23 @@ public class AppUI {
                     gradeMenu = true;
                 }
                 else if (cmd.equals("3")) {
-                    System.out.println("½Ã½ºÅÛÀ» Á¾·áÇÕ´Ï´Ù.");
+                    System.out.println("?ý????? ????????.");
                     System.exit(0);
                     return;
                 }else{
-                	System.out.println("Àß ¸ø ´©¸£¼Ì½À´Ï´Ù. ´Ù½Ã ÀÔ·Â ÇÏ¿© ÁÖ¼¼¿ä. \n\n\n");
+                	System.out.println("?? ?? ??????????. ??? ??? ??? ?????. \n\n\n");
                 }
             }
             else if (studentMenu) {
                 action = null;
-            	System.out.println("--------------------<ÇÐ»ý °ü¸®>--------------------");
-                System.out.println("                1. ÇÐ»ý Á¤º¸ ÀÔ·Â");
-                System.out.println("                2. ÇÐ»ý Á¤º¸ Á¶È¸");
-                System.out.println("                3. ÇÐ»ý Á¤º¸ °Ë»ö");
-                System.out.println("                4. ÇÐ»ý Á¤º¸ º¯°æ");
-                System.out.println("                5. ÇÐ»ý Á¤º¸ »èÁ¦");
-                System.out.println("                6. Ã¹ È­¸éÀ¸·Î");
-                System.out.print("             ¼±ÅÃ>" );
+            	System.out.println("--------------------<??? ????>--------------------");
+                System.out.println("                1. ??? ???? ???");
+                System.out.println("                2. ??? ???? ???");
+                System.out.println("                3. ??? ???? ???");
+                System.out.println("                4. ??? ???? ????");
+                System.out.println("                5. ??? ???? ????");
+                System.out.println("                6. ù ???????");
+                System.out.print("             ????>" );
                 String cmd = sc.next();
                 if (cmd.equals("1")) {
                 	action = new StuAddAction();
@@ -85,19 +85,19 @@ public class AppUI {
                     studentMenu = false;
                     gradeMenu = false;
                 }else{
-                	System.out.println("Àß ¸ø ´©¸£¼Ì½À´Ï´Ù. ´Ù½Ã ÀÔ·Â ÇÏ¿© ÁÖ¼¼¿ä.");
+                	System.out.println("?? ?? ??????????. ??? ??? ??? ?????.");
                 }
             }
             else if (gradeMenu) {
             	action = null;
-                System.out.println("--------------------<¼ºÀû °ü¸®>--------------------");
-                System.out.println("                1. ¼ºÀû Á¤º¸ ÀÔ·Â");
-                System.out.println("                2. ¼ºÀû Á¤º¸ Á¶È¸");
-                System.out.println("                3. ¼ºÀû Á¤º¸ °Ë»ö");
-                System.out.println("                4. ¼ºÀû Á¤º¸ º¯°æ");
-                System.out.println("                5. ¼ºÀû Á¤º¸ »èÁ¦");
-                System.out.println("                6. Ã¹ È­¸éÀ¸·Î");
-                System.out.print("             ¼±ÅÃ>" );
+                System.out.println("--------------------<???? ????>--------------------");
+                System.out.println("                1. ???? ???? ???");
+                System.out.println("                2. ???? ???? ???");
+                System.out.println("                3. ???? ???? ???");
+                System.out.println("                4. ???? ???? ????");
+                System.out.println("                5. ???? ???? ????");
+                System.out.println("                6. ù ???????");
+                System.out.print("             ????>" );
                 String cmd = sc.next();
                 if (cmd.equals("1")) {
                 	action = new GradeAddAction();
@@ -119,7 +119,7 @@ public class AppUI {
                     studentMenu = false;
                     gradeMenu = false;
                 }else{
-                	System.out.println("Àß ¸ø ´©¸£¼Ì½À´Ï´Ù. ´Ù½Ã ÀÔ·Â ÇÏ¿© ÁÖ¼¼¿ä.");
+                	System.out.println("?? ?? ??????????. ??? ??? ??? ?????.");
                 }
                 
             }
