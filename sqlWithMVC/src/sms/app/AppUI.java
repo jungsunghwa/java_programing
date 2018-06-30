@@ -30,11 +30,11 @@ public class AppUI {
 
         while (true) {
             if (mainMenu) {
-                System.out.println("---------------<??????? ???? ?ý???>---------------");
-                System.out.println("                1. ??? ???? ????");
-                System.out.println("                2. ???? ???? ????");
-                System.out.println("                3. ?????? ????");
-                System.out.print("             ????>" );
+                System.out.println("---------------<???? ?? ???>---------------");
+                System.out.println("                1. ?? ?? ??");
+                System.out.println("                2. ?? ?? ??");
+                System.out.println("                3. ???? ??");
+                System.out.print("             ??>" );
                 String cmd = sc.next();
                 if (cmd.equals("1")) {
                     mainMenu = false;
@@ -47,81 +47,81 @@ public class AppUI {
                     gradeMenu = true;
                 }
                 else if (cmd.equals("3")) {
-                    System.out.println("?ý????? ????????.");
+                    System.out.println("???? ?????.");
                     System.exit(0);
                     return;
                 }else{
-                	System.out.println("?? ?? ??????????. ??? ??? ??? ?????. \n\n\n");
+                    System.out.println("? ? ??????. ?? ?? ?? ???. \n\n\n");
                 }
             }
             else if (studentMenu) {
                 action = null;
-            	System.out.println("--------------------<??? ????>--------------------");
-                System.out.println("                1. ??? ???? ???");
-                System.out.println("                2. ??? ???? ???");
-                System.out.println("                3. ??? ???? ???");
-                System.out.println("                4. ??? ???? ????");
-                System.out.println("                5. ??? ???? ????");
-                System.out.println("                6. ù ???????");
-                System.out.print("             ????>" );
+                System.out.println("--------------------<?? ??>--------------------");
+                System.out.println("                1. ?? ?? ??");
+                System.out.println("                2. ?? ?? ??");
+                System.out.println("                3. ?? ?? ??");
+                System.out.println("                4. ?? ?? ??");
+                System.out.println("                5. ?? ?? ??");
+                System.out.println("                6. ? ????");
+                System.out.print("             ??>" );
                 String cmd = sc.next();
                 if (cmd.equals("1")) {
-                	action = new StuAddAction();
+                    action = new StuAddAction();
                 }
                 else if (cmd.equals("2")) {
-                	action = new StuListAction();
+                    action = new StuListAction();
                 }
                 else if (cmd.equals("3")) {
-                	action = new StuSearchAction();
+                    action = new StuSearchAction();
                 }
                 else if (cmd.equals("4")) {
-                	action = new StuModifyAction();
+                    action = new StuModifyAction();
                 }
                 else if (cmd.equals("5")) {
-                	action = new StuDeleteAction();
+                    action = new StuDeleteAction();
                 }
                 else if (cmd.equals("6")) {
                     mainMenu = true;
                     studentMenu = false;
                     gradeMenu = false;
                 }else{
-                	System.out.println("?? ?? ??????????. ??? ??? ??? ?????.");
+                    System.out.println("? ? ??????. ?? ?? ?? ???.");
                 }
             }
             else if (gradeMenu) {
-            	action = null;
-                System.out.println("--------------------<???? ????>--------------------");
-                System.out.println("                1. ???? ???? ???");
-                System.out.println("                2. ???? ???? ???");
-                System.out.println("                3. ???? ???? ???");
-                System.out.println("                4. ???? ???? ????");
-                System.out.println("                5. ???? ???? ????");
-                System.out.println("                6. ù ???????");
-                System.out.print("             ????>" );
+                action = null;
+                System.out.println("--------------------<?? ??>--------------------");
+                System.out.println("                1. ?? ?? ??");
+                System.out.println("                2. ?? ?? ??");
+                System.out.println("                3. ?? ?? ??");
+                System.out.println("                4. ?? ?? ??");
+                System.out.println("                5. ?? ?? ??");
+                System.out.println("                6. ? ????");
+                System.out.print("             ??>" );
                 String cmd = sc.next();
                 if (cmd.equals("1")) {
-                	action = new GradeAddAction();
+                    action = new GradeAddAction();
                 }
                 else if (cmd.equals("2")) {
-                	action = new GradeListAction();
+                    action = new GradeListAction();
                 }
                 else if (cmd.equals("3")) {
-                	action = new GradeSearchAction();
+                    action = new GradeSearchAction();
                 }
                 else if (cmd.equals("4")) {
-                	action = new GradeModifyAction();
+                    action = new GradeModifyAction();
                 }
                 else if (cmd.equals("5")) {
-                	action = new GradeDeleteAction();
+                    action = new GradeDeleteAction();
                 }
                 else if (cmd.equals("6")) {
                     mainMenu = true;
                     studentMenu = false;
                     gradeMenu = false;
                 }else{
-                	System.out.println("?? ?? ??????????. ??? ??? ??? ?????.");
+                    System.out.println("? ? ??????. ?? ?? ?? ???.");
                 }
-                
+
             }
             if(action!=null){ stuController.requestProcess(action, sc); }
         }

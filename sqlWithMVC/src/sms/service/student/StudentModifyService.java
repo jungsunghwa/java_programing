@@ -1,16 +1,13 @@
 package sms.service.student;
 
-import static sms.db.JdbcUtil.close;
-import static sms.db.JdbcUtil.commit;
-import static sms.db.JdbcUtil.getConnection;
-import static sms.db.JdbcUtil.rollback;
+import sms.dto.Student;
+import sms.model.StudentDAO;
 
 import java.sql.Connection;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
 
-import sms.dto.Student;
-import sms.model.StudentDAO;
+import static sms.db.JdbcUtil.*;
 
 public class StudentModifyService {
 	public boolean modifyStudent(Student student) {

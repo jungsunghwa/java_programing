@@ -9,6 +9,7 @@ import java.util.ArrayList;
 
 import static sms.db.JdbcUtil.*;
 
+import com.mysql.jdbc.exceptions.MySQLIntegrityConstraintViolationException;
 import sms.dto.Student;
 
 public class StudentDAO {
@@ -57,10 +58,10 @@ public class StudentDAO {
 		try{
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, newStudent.getStu_no());
-			pstmt.setString(2, newStudent.getStu_name());
+			pstmt.setString(2, newStudent.getStu_name().toString());
 			pstmt.setInt(3, newStudent.getStu_year());
-			pstmt.setString(4, newStudent.getStu_addr());
-			pstmt.setString(5, newStudent.getStu_tel());
+			pstmt.setString(4, newStudent.getStu_addr().toString());
+			pstmt.setString(5, newStudent.getStu_tel().toString());
 			pstmt.setDate(6, birth);
 			
 			insertCount = pstmt.executeUpdate();
@@ -130,15 +131,25 @@ public class StudentDAO {
 
 	public int deleteStudent(int stu_no) {
 		PreparedStatement pstmt = null;
+
 		int delete = 0;
-		String sql = "DELETE FROM student WHERE stu_no=?";
-		
+
+		String deleteGradeSQL = "DELETE FROM grade WHERE stu=?";
+		String deleteStudentSQL = "DELETE FROM student WHERE stu_no=?;";
+
 		try{
-			pstmt = con.prepareStatement(sql);
+			pstmt = con.prepareStatement(deleteGradeSQL);
 			pstmt.setInt(1, stu_no);
-			
+
+			pstmt.executeUpdate();
+
+			pstmt = con.prepareStatement(deleteStudentSQL);
+			pstmt.setInt(1,stu_no);
+
 			delete = pstmt.executeUpdate();
-		}catch(Exception e){
+		}catch(MySQLIntegrityConstraintViolationException e){
+
+		}catch (Exception e){
 			e.printStackTrace();
 		}finally{
 			close(pstmt);
@@ -146,4 +157,98 @@ public class StudentDAO {
 		
 		return delete;
 	}
+
+	public ArrayList<Student> searchByStudentNumber(int stu_no){
+		ArrayList<Student> students = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		String sql = "SELECT * FROM student WHERE stu_no LIKE ?";
+
+		try{
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, stu_no);
+			rs = pstmt.executeQuery();
+
+			while(rs.next()){
+				students.add(new Student(rs.getInt("stu_no"),
+						rs.getString("stu_name"),
+						rs.getInt("stu_year"),
+						rs.getString("stu_addr"),
+						rs.getString("stu_tel"),
+						rs.getDate("stu_birth").toString()));
+			}
+
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally{
+			close(pstmt);
+			close(rs);
+		}
+
+		return students;
+	}
+
+	public ArrayList<Student> searchByStudentName(String stu_name){
+		ArrayList<Student> students = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		String sql = "SELECT * FROM student WHERE stu_name LIKE '%"+stu_name+"%'";
+
+		try{
+			pstmt = con.prepareStatement(sql);
+
+			rs = pstmt.executeQuery();
+
+			while(rs.next()){
+				students.add(new Student(rs.getInt("stu_no"),
+						rs.getString("stu_name"),
+						rs.getInt("stu_year"),
+						rs.getString("stu_addr"),
+						rs.getString("stu_tel"),
+						rs.getDate("stu_birth").toString()));
+			}
+
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally{
+			close(pstmt);
+			close(rs);
+		}
+
+		return students;
+	}
+
+	public ArrayList<Student> searchByStudentGrade(int stu_year){
+		ArrayList<Student> students = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		String sql = "SELECT * FROM student WHERE stu_year LIKE ?";
+
+		try{
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, stu_year);
+			rs = pstmt.executeQuery();
+
+			while(rs.next()){
+				students.add(new Student(rs.getInt("stu_no"),
+						rs.getString("stu_name"),
+						rs.getInt("stu_year"),
+						rs.getString("stu_addr"),
+						rs.getString("stu_tel"),
+						rs.getDate("stu_birth").toString()));
+			}
+
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally{
+			close(pstmt);
+			close(rs);
+		}
+
+		return students;
+	}
+
 }
